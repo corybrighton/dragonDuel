@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dragon Duel</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="app/style.css">
+</head>
+
+<body class="text-white">
+  <div class="container-fluid" id="game">
+    <div class="row d-flex justify-content-around">
+      <div class="col-2">
+        <img class="img-fluid" src="https://forum.escapefromtarkov.com/uploads/monthly_2018_06/TorchFlameAnimation.thumb.gif.d8497e3d898e74f3c6ca12fe3749d33b.gif"
+          alt="">
+      </div>
+      <div class="col-4" id="champions-menu"> </div>
+      <div class="col-4" id="dragons-menu"> </div>
+      <div class="col-2">
+        <img class="img-fluid" src="https://forum.escapefromtarkov.com/uploads/monthly_2018_06/TorchFlameAnimation.thumb.gif.d8497e3d898e74f3c6ca12fe3749d33b.gif"
+          alt="">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 text-center" id="your-champion">
+
+      </div>
+      <div class="col-6 text-center" id="your-dragon">
+
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center" id="start-button">
+
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  <script src="app/main.js" type="module"></script>
+</body>
+
+</html>

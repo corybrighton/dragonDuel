@@ -1,0 +1,12 @@
+.small-images{
+  max-height: 50px;
+}
+.image-selected{
+  max-height: 450px;
+}
+body{
+  background-image: url(https://pan.by/upload/resize_cache/iblock/b7b/950_950_1668530a00a59074775bba6dae4ed649c/dekorativnyy-iskusstvennyy-kamen-rokstoun-kirpich-florentiyskiy-uglovoy-2419u-chernyy-pepel-950x950.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
