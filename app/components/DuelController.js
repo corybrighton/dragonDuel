@@ -38,11 +38,38 @@ function _drawYourDragon() {
 }
 function _drawBattleButton() {
   document.getElementById("start-button").innerHTML = `
-  <button>Start Battle</button>`
+  <button onclick="app.controller.duelCtrl.beginBattle()">Start Battle</button>`
 }
 
 function _drawBattle() {
+  let game = _ds.game
+  let champion = game._champion
+  let dragon = game._dragon
+  let battleMoves = Object.keys(champion.attacks)
+  document.getElementById("game").innerHTML = `
+  <div class="row">
+      <div class="col-6 text-center d-flex flex-column" >
+        <h1>HP:${champion.hp}</h1>
+        <img class="img-fluid image-selected" src="${champion.imgUrl}" alt="">
+        
+        <button class="btn btn-danger" onclick="app.controller.duelCtrl.attack('${battleMoves[0]}')">${battleMoves[0]}</button>
+        <button class="btn btn-danger" onclick="app.controller.duelCtrl.attack('${battleMoves[1]}')">${battleMoves[1]}</button>
+        <button class="btn btn-danger" onclick="app.controller.duelCtrl.attack('${battleMoves[2]}')">${battleMoves[2]}</button>
 
+      </div>
+      <div class="col-6 text-center" id="your-dragon">
+        <h1>HP:${dragon.currentHP}</h1>
+        <img class="img-fluid image-selected" src="${dragon.imgUrl}" alt="">
+      </div>
+      <button onclick="app.controller.duelCtrl.deleteBattle()">Delete Game</button>
+    </div>
+  `
+}
+
+function _deleteBattle() {
+  document.getElementById("game").innerHTML = `
+  <h1>Deleted</h1>
+  `
 }
 
 export default class DuelController {
@@ -67,4 +94,15 @@ export default class DuelController {
     }
   }
 
+  beginBattle() {
+    _ds.startBattle(_drawBattle)
+  }
+
+  attack(attack) {
+    _ds.battle(attack, _drawBattle)
+  }
+
+  deleteBattle() {
+    _ds.deleteBattle(_deleteBattle)
+  }
 }

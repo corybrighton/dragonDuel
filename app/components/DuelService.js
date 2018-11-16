@@ -1,5 +1,6 @@
 import Dragon from "../models/dragon.js";
 import Champion from "../models/champion.js";
+import Game from "../models/game.js";
 
 // @ts-ignore
 let _duelAPI = axios.create({
@@ -10,7 +11,8 @@ let _dragons = []
 let _activeDragon = {}
 let _champions = []
 let _activeChampion = {}
-let _game = ''
+let _gameStarter = {}
+let _game = {}
 
 function handleError(err) {
   throw new Error(err)
@@ -55,9 +57,41 @@ export default class DuelService {
 
   makeActiveChampion(champion) {
     _activeChampion = _champions[champion]
+    _gameStarter.championId = `${_activeChampion.id}`
   }
 
   makeActiveDragon(dragon) {
     _activeDragon = _dragons[dragon]
+    _gameStarter.dragonId = `${_activeDragon.id}`
+  }
+
+  startBattle(draw) {
+    _duelAPI.post("games", _gameStarter)
+      .then(res => {
+        console.log(res.data.game)
+        _game = new Game(res.data.game)
+        draw()
+      })
+      .catch(handleError)
+  }
+
+  battle(attackStr, draw) {
+    let id = "games/" + _game._id
+    let at = { attack: attackStr }
+    _duelAPI.put(id, at)
+      .then(res => {
+        _game = new Game(res.data)
+        draw()
+      }).catch(handleError)
+  }
+
+  deleteBattle(draw) {
+    let id = "games/" + _game._id
+    _duelAPI.delete(id)
+      .then(res => {
+        console.log("deleted")
+        draw()
+      })
+      .catch(handleError)
   }
 }
